@@ -8,7 +8,7 @@ class ToDoList
   end
 
   def get_content()
-    return File.readlines(@path) #Why does this require @path and open() can use :path
+    return File.readlines(@path)
   end
 
   def empty?()
@@ -16,18 +16,18 @@ class ToDoList
   end
 
   def add(todo)
-    @file = open(:path, 'a')
+    @file = open(@path, 'a')
     @file.puts(todo)
     @file.close
   end
 
   def remove(id)
     @content = get_content
-    @content.delete(id)
-    @file = open(:path, 'w')
+    @content.delete_at(id)
+    @file = open(@path, 'w')
 
     @content.each do |line|
-      file.puts(line + "\n")
+      @file.puts(line)
     end
 
     @file.close

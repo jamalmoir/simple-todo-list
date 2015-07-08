@@ -31,21 +31,27 @@ def remove_list(id)
 end
 
 def load_list(id)
-  file = load_lists[id.to_i]
-  return file.get_content
+  return load_lists[id.to_i]
 end
 
 def print_options
-  puts "____Options____"
+  puts "\n____Options____"
     puts "0 : Create List"
     puts "1 : Delete List"
     puts "2 : Select List"
     puts "q : Exit"
 end
 
+def print_list_options
+  puts "\n____Options____"
+  puts "0 : Add Item"
+  puts "1 : Remove Item"
+  puts "x : Exit"
+end
+
 def print_lists
   files = load_lists
-  puts "____Lists____"
+  puts "\n____Lists____"
 
   files.each do |item|
     print "#{item.id} : #{item.name}\n"
@@ -74,18 +80,34 @@ while run
       puts "Added"
     when "1"
       print_lists
-      remove_list(get_input "Enter The ID Of The List You Wish To Delete : ")
+      remove_list(get_input "Enter The ID Of List To Delete : ")
       puts "Removed."
     when "2"
       print_lists
-      list = load_list(get_input "Enter The ID Of A List : ")
-
-      list.each do |item|
-        puts item
-      end
+      current_list = load_list(get_input "Enter The ID Of A List : ")
     when "q"
       exit
     else
+      puts "Invalid Choice"
+    end
+  else
+    puts "\n____#{current_list.name}____"
+    current_list.get_content.each_with_index do |item, index|
+      puts "#{index} : #{item}"
+    end
+
+    print_list_options
+    input = get_input "Choose An Option : "
+
+    case input
+    when "0"
+      current_list.add(get_input "Enter A New Item : ")
+    when "1"
+      current_list.remove((get_input "Enter ID Of Item To Delete : ").to_i)
+    when "x"
+      current_list = nil
+    else
+      puts "Invalid Choice"
     end
   end
 end
