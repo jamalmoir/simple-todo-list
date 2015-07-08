@@ -75,7 +75,7 @@ while run
       print_lists
       choice = get_input "Enter The Idea Of A List : "
     when "q"
-      Exit
+      exit
     else
     end
   end
