@@ -35,6 +35,7 @@ def print_options
     puts "0 : Create List"
     puts "1 : Delete List"
     puts "2 : Select List"
+    puts "q : Exit"
 end
 
 def print_lists
@@ -73,7 +74,8 @@ while run
     when "2"
       print_lists
       choice = get_input "Enter The Idea Of A List : "
-    when "3"
+    when "q"
+      Exit
     else
     end
   end
