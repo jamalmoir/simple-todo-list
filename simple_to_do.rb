@@ -30,6 +30,11 @@ def remove_list(id)
   File.delete(PATH_TO_LISTS + name + EXT)
 end
 
+def load_list(id)
+  file = load_lists[id.to_i]
+  return file.get_content
+end
+
 def print_options
   puts "____Options____"
     puts "0 : Create List"
@@ -73,7 +78,11 @@ while run
       puts "Removed."
     when "2"
       print_lists
-      choice = get_input "Enter The Idea Of A List : "
+      list = load_list(get_input "Enter The ID Of A List : ")
+
+      list.each do |item|
+        puts item
+      end
     when "q"
       exit
     else

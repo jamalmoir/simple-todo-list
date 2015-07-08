@@ -8,7 +8,7 @@ class ToDoList
   end
 
   def get_content()
-    return File.readlines(:path)
+    return File.readlines(@path) #Why does this require @path and open() can use :path
   end
 
   def empty?()
