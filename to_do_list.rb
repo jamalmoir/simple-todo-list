@@ -1,6 +1,12 @@
 class ToDoList
   attr_accessor :id, :name, :path
 
+  def initialize(id, name, path)
+    @id = id
+    @name = name
+    @path = path
+  end
+
   def get_content()
     return File.readlines(:path)
   end
