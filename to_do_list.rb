@@ -7,12 +7,12 @@ class ToDoList
     @path = path
   end
 
-  def get_content()
+  def get_content
     return File.readlines(@path)
   end
 
-  def empty?()
-    get_content() == nil ? true : false
+  def empty?
+    get_content == nil ? true : false
   end
 
   def add(todo)

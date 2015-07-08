@@ -1,11 +1,11 @@
 require './to_do_list'
 
-PATH_TO_LISTS = "./.to_do_lists/"
-EXT = ".tdl"
+PATH_TO_LISTS = './.to_do_lists/'
+EXT = '.tdl'
 
-def load_lists()
+def load_lists
   Dir.mkdir(PATH_TO_LISTS) unless File.exists?(PATH_TO_LISTS)
-  files = Dir.entries(PATH_TO_LISTS).select{|file| /[A-Za-z\d_-]+.tdl/.match file }
+  files = Dir.entries(PATH_TO_LISTS).select { |file| /[A-Za-z\d_-]+.tdl/.match file }
   lists = Array.new
 
   files.each_with_index do |file, index|
@@ -36,17 +36,17 @@ end
 
 def print_options
   puts "\n____Options____"
-    puts "0 : Create List"
-    puts "1 : Delete List"
-    puts "2 : Select List"
-    puts "q : Exit"
+    puts '0 : Create List'
+    puts '1 : Delete List'
+    puts '2 : Select List'
+    puts 'q : Exit'
 end
 
 def print_list_options
   puts "\n____Options____"
-  puts "0 : Add Item"
-  puts "1 : Remove Item"
-  puts "x : Exit"
+  puts '0 : Add Item'
+  puts '1 : Remove Item'
+  puts 'x : Exit'
 end
 
 def print_lists
@@ -67,28 +67,28 @@ end
 run = true
 current_list = nil
 
-puts "Welcome To Simple To Do List"
+puts 'Welcome To Simple To Do List'
 
 while run
   if current_list == nil
     print_options
-    input = get_input "Choose An Option : "
+    input = get_input 'Choose An Option : '
 
     case input
-    when "0"
-      add_list(get_input "Enter A Name For New List : ")
-      puts "Added"
-    when "1"
+    when '0'
+      add_list(get_input 'Enter A Name For New List : ')
+      puts 'Added'
+    when '1'
       print_lists
-      remove_list(get_input "Enter The ID Of List To Delete : ")
-      puts "Removed."
-    when "2"
+      remove_list(get_input 'Enter The ID Of List To Delete : ')
+      puts 'Removed.'
+    when '2'
       print_lists
-      current_list = load_list(get_input "Enter The ID Of A List : ")
-    when "q"
+      current_list = load_list(get_input 'Enter The ID Of A List : ')
+    when 'q'
       exit
     else
-      puts "Invalid Choice"
+      puts 'Invalid Choice'
     end
   else
     puts "\n____#{current_list.name}____"
@@ -97,17 +97,17 @@ while run
     end
 
     print_list_options
-    input = get_input "Choose An Option : "
+    input = get_input 'Choose An Option : '
 
     case input
-    when "0"
-      current_list.add(get_input "Enter A New Item : ")
-    when "1"
-      current_list.remove((get_input "Enter ID Of Item To Delete : ").to_i)
-    when "x"
+    when '0'
+      current_list.add(get_input 'Enter A New Item : ')
+    when '1'
+      current_list.remove((get_input 'Enter ID Of Item To Delete : ').to_i)
+    when 'x'
       current_list = nil
     else
-      puts "Invalid Choice"
+      puts 'Invalid Choice'
     end
   end
 end
